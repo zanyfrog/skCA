@@ -1,0 +1,45 @@
+
+<ion-grid no-padding id="item-list">
+  <ion-row>
+    <ion-col>
+      <ion-list padding-top>
+        <ion-row text-center style="background-color: beige">
+          <ion-col>
+            Name
+          </ion-col>
+          <ion-col>
+            Details
+          </ion-col>
+        </ion-row>
+        <div text-center ion-item *ngFor="let ingredient of ingredients">
+          <ion-row>
+            <ion-col>
+              {{ingredient.name}}
+            </ion-col>
+            <ion-col>
+              {{ingredient.invId}} - {{ingredient.manufacturer}}
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </ion-col>
+    <ion-col col-auto>
+      <ion-list padding-top>
+        <ion-row text-center style="background-color: beige">
+          <ion-col>
+            <!--Empty-->Options
+          </ion-col>
+        </ion-row>
+        <div ion-item *ngFor="let ingredient of ingredients">
+          <ion-row>
+            <ion-col>
+              <!--<ion-icon tooltip="Messages" name="chatboxes" (click)="goToMessages($event, ingredient)"></ion-icon>-->
+              <ion-icon tooltip="Edit" name="create" (click)="editIngredient($event, ingredient)"></ion-icon>
+              <ion-icon tooltip="Delete" name="close" (click)="deleteItem($event, ingredient)"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>

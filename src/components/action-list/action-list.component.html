@@ -1,0 +1,36 @@
+<ion-card>
+	<ion-list-header color="primary">
+		<div float-right>
+			<button ion-button round small (click)="refresh()"><ion-icon item-left name="refresh"></ion-icon></button>
+		</div>
+		<h1>Actions</h1>
+	</ion-list-header>
+	<ion-card-content>
+		<ion-grid>
+			<ion-row>
+				<ion-col class="header sort">
+					Date
+				</ion-col>
+				<ion-col class="header button">
+					Action
+				</ion-col>
+				<ion-col class="header">
+					Status
+				</ion-col>
+			</ion-row>
+			<ion-row *ngFor="let action of actions" (click)="getActionDetails(action)">
+				<ion-col>
+					{{action.dateCreated}}
+				</ion-col>
+				<ion-col>
+					{{action.description}}
+				</ion-col>
+				<ion-col>
+					<div text-center>
+
+					</div>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card-content>
+</ion-card>

@@ -1,0 +1,45 @@
+<ion-list no-lines>
+  <div [formGroup]="msgForm">
+    <button ion-button icon-only float-right style="margin-right: 10px;" color="danger" small (click)="closeMessagePopover()">
+    <ion-icon name="close"></ion-icon>
+  </button>
+    <div>
+      <h2 style="padding-left: 10px;">Messages</h2>
+    </div>
+    <div *ngFor="let message of messageList; let i=index">
+      <ion-item class="top" id="msg_{{message.id}}">
+        <ion-icon (click)="toggleMsg(i)" item-left [name]="isMsgShown(i) ? 'remove' : 'add'"></ion-icon>
+        <div style="font-size: x-small; padding: 5px 0; color: black">
+          {{message.date | date:'medium' }} - {{message.from}}
+        </div>
+        <div [ngClass]="{newMsg: message.from != currentUser && !message.isRead}">
+          {{message.text}}
+        </div>
+      </ion-item>
+      <div *ngIf="isMsgShown(i)">
+        <div *ngFor="let reply of message.replies">
+          <div [ngClass]="{'reply-same': (message.from == reply.from),  'reply-other': (message.from != reply.from)}" text-wrap>
+            <div style="font-size: x-small; padding: 5px; color: black">
+              {{reply.date | date:'medium' }} - {{reply.from}}
+            </div>
+            <div style="padding: 5px;" [ngClass]="{newMsg: reply.from != currentUser && !reply.isRead}">
+              {{reply.text}}
+            </div>
+          </div>
+        </div>
+        <div>
+          <button ion-button icon-only float-right (click)="msgReply($event, message)">
+           <ion-icon name="send"></ion-icon>
+        </button>
+          <ion-input style="width: 85%" placeholder='Enter Reply Here...' type="text" formControlName="reply_{{message.id}}" (blur)="setUserState()" (keyup.enter)="msgReply($event, message)"></ion-input>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button ion-button icon-only float-right (click)="newMsg($event)">
+        <ion-icon name="send"></ion-icon>
+    </button>
+      <ion-input style="width: 85%" placeholder='Enter New Message Here...' formControlName="newMsgText" type="text" (blur)="setUserState()" (keyup.enter)="newMsg($event)"></ion-input>
+    </div>
+  </div>
+</ion-list>

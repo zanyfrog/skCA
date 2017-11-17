@@ -1,0 +1,30 @@
+// .col{
+//     //border: solid yellow 1px;
+// }
+
+// input, .input {
+//     width: 100%;
+//     border: 2px solid lightgray;
+//     border-radius: 5px;
+// }
+
+/* Override the standard Bootstrap typeahead clases */
+.dropdown-menu{
+ 	height:15em;
+ 	overflow:auto;
+}
+
+.dropdown-header{
+	font-size: 1.5rem;
+	font-weight: bolder;
+	text-decoration: underline;
+}
+.dropDownList{
+	 font-size: 1.25rem;
+	 font-weight: bolder;
+}
+.dropDownList div:nth-child(2){
+	 font-size: 1em;
+	 font-style: italic;
+	 padding-top: 3px;
+}

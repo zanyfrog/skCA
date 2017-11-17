@@ -1,0 +1,34 @@
+<ion-header>
+	<ion-navbar>
+	</ion-navbar>
+</ion-header>
+
+<page-header [page-title]="page.title"></page-header>
+
+<ion-content padding>
+	
+	<page-subheader [title]="page.title"></page-subheader>
+
+	<div [ngSwitch]="actionDisplay">
+
+		<div *ngSwitchCase="'loc'">
+			Display LOC Information
+		</div>
+
+		<div *ngSwitchCase="'ingredient'">
+			<ingredient-list [action]="action"></ingredient-list>
+		</div>
+
+		<div *ngSwitchCase="'product'">
+			Display New Product Information
+		</div>
+
+		<div *ngSwitchCase="'recertification'">
+			Display Re-Certification Information
+		</div>
+	</div>
+
+	<div text-right>
+		<button tooltip="Go Back" ion-button (click)="goBack()" showWhen="core">Back</button>
+	</div>
+</ion-content>

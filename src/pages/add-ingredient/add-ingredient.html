@@ -1,0 +1,165 @@
+<ion-header>
+	<ion-navbar></ion-navbar>
+</ion-header>
+
+
+<page-header [page-title]="page.title"></page-header>
+
+<ion-content padding>
+
+	<page-subheader [title]="page.title"></page-subheader>
+
+	<div [formGroup]="addIngredientForm">
+		<ion-grid>
+			<ion-row align-items-center *ngIf="1===0">
+				<ion-col text-sm-right col-xl-4 col-sm-3 col-6>
+					<ion-label>Import From LOC:</ion-label>
+				</ion-col>
+				<ion-col col-xl-4 col-sm-5 col-9>
+					<input id="locFileUpload" class="upload" formControlName="locFile" type="file" />
+				</ion-col>
+				<ion-col col-auto>
+					<button ion-button small (click)="addFromLoc()">Add</button>
+				</ion-col>
+			</ion-row>
+			<ion-row align-items-center>
+				<ion-col class="text-sm-right col-xl-4 col-sm-3 col-6 align-self-start">
+					<ion-label>Select from UKD:</ion-label>
+				</ion-col>
+				<ion-col class="col-xl-4 col-sm-5 col-6">
+					
+					<ng-template #customItemTemplate let-model="item" let-index="index">
+						<!-- <h5>This is: {{model | json}}</h5> -->
+						<div class="dropDownList">
+							<div>{{model.itemname}}</div>
+							<div>{{model.agencyUniqueId}} - {{model.companyName}}</div>
+						</div>
+					</ng-template>
+
+					<!-- https://valor-software.com/ngx-bootstrap/#/typeahead -->
+					<!-- multiple-item-selection ({{ukdSearch.selected}})
+					<multiple-item-selection
+						[sk_ngModel]="ukdSearch.selected" 
+						[sk_typeahead]="dataSource" 
+						(sk_typeaheadNoResults)="changeTypeaheadNoResults($event)" 
+						(sk_typeaheadLoading)="changeTypeaheadLoading($event)"
+						(sk_typeaheadNoResults)="changeTypeaheadNoResults($event)" 
+						(sk_typeaheadOnSelect)="typeaheadOnSelect($event)" 
+						sk_typeaheadAsync="true"
+						[sk_typeaheadMinLength]="ukdSearch.minimumLength" 
+						sk_typeaheadWaitMs="1000" 
+						sk_typeaheadOptionsLimit="999" 
+						sk_typeaheadOptionField="agencyUniqueId" 
+						sk_typeaheadGroupField="companyName"
+						sk_typeaheadSingleWords="false" 
+						[sk_typeaheadItemTemplate]="customItemTemplate" 
+
+						placeholder="UKD loaded with timeout"
+
+						(sk_onchange)="valueChanged($event)"
+					></multiple-item-selection> -->
+
+					<ion-input 
+						formControlName="ukdLookup" 
+						[(ngModel)]="ukdSearch.selected" 
+						[typeahead]="dataSource" 
+						(typeaheadLoading)="changeTypeaheadLoading($event)"
+						(typeaheadNoResults)="changeTypeaheadNoResults($event)" 
+						(typeaheadOnSelect)="typeaheadOnSelect($event)" 
+						typeaheadAsync="true"
+						typeaheadMinLength="5" 
+						typeaheadWaitMs="1000" 
+						typeaheadOptionsLimit="999" 
+						typeaheadOptionField="agencyUniqueId" 
+						typeaheadGroupField="companyName"
+						typeaheadSingleWords="false" 
+						[typeaheadItemTemplate]="customItemTemplate" 
+						placeholder="UKD loaded with timeout"
+						
+						></ion-input>
+					<div *ngIf="ukdSearch.typeaheadLoading===true">
+						<i class="glyphicon glyphicon-refresh ng-hide"></i>Searching For: {{ukdSearch.searchingFor}}
+						<span class="additionalInfo">This may take a minute</span>
+					</div>
+					<div *ngIf="ukdSearch.typeaheadNoResults===true && !ukdSearch.typeaheadLoading===true" class="">
+						<div *ngIf="ukdSearch.minimumSearchLengthReached()" class="">
+							<i class="glyphicon glyphicon-remove"></i> No Results Found [{{ukdSearch.searchingFor}}]
+						</div>
+						<div *ngIf="!ukdSearch.minimumSearchLengthReached()" class="">
+							<i class="glyphicon glyphicon-repeat"></i>Waiting for more [{{ukdSearch.searchingFor}}]
+						</div>
+					</div>
+				</ion-col>
+			</ion-row>
+			<ion-row align-items-center>
+				<ion-col class="text-sm-right col-xl-4 col-sm-3 col-6 align-self-start">
+					<ion-label>Manual Entry</ion-label>
+				</ion-col>
+				<ion-col class="col-xl-4 col-sm-5 col-9">
+					<ion-row>
+						<ion-col class="col-xl-6 col-sm-12 col-12">
+							<ion-input formControlName="itemName" type="text" placeholder="Ingredient Name"></ion-input>
+						</ion-col>
+						<ion-col class="col-xl-6 col-sm-12 col-12">
+							<ion-input formControlName="ukd" type="text" placeholder="UKD"></ion-input>
+						</ion-col>
+						<ion-col class="col-xl-6 col-sm-12 col-12">
+							<ion-input formControlName="lotId" type="text" placeholder="Lot #"></ion-input>
+						</ion-col>
+						<ion-col class="col-xl-6 col-sm-12 col-12">
+							<ion-input formControlName="itemManufacturer" type="text" placeholder="Manufacturer"></ion-input>
+						</ion-col>
+					</ion-row>
+					<!-- <ion-input formControlName="plants" type="text" placeholder="Plants List Box"></ion-input>
+					<ion-input formControlName="products" type="text" placeholder="Products List Box"></ion-input> -->
+				</ion-col>
+				<ion-col align-self-end col-auto>
+					<button ion-button small (click)="addIngredientManual()">Add</button>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col class="text-sm-right col-xl-6 col-sm-12 col-12 align-self-start">
+					
+					<!-- <kendo-multiselect 
+						#plantList
+						[clearButton]='false'
+						[data]="plants.filtered" 
+						[filterable]="true"
+						[value]="plants.items" 
+						[placeholder]="'Select Plants for Ingredient'"
+						[textField]="plants.textField"
+						[valueField]="plants.valueField"
+
+						(valueChange)="valueChangePlants($event)"
+						></kendo-multiselect> -->
+				</ion-col>
+				<ion-col class="text-sm-right col-xl-6 col-sm-12 col-12 align-self-start">
+					<!-- <kendo-multiselect 
+						[data]="products.filtered" 
+						[value]="products.items" 
+						[placeholder]="'Select Products for Ingredient'"
+						[textField]="products.textField"
+						[valueField]="products.valueField"
+						>
+						<ng-template kendoMultiSelectHeaderTemplate let-dataItem>
+							<h4>{{ dataItem }}</h4>
+						 </ng-template>
+
+						<ng-template kendoMultiSelectItemTemplate let-dataItem>
+							<span class="template">{{ dataItem.description }}</span> {{ dataItem.plantName }}
+						 </ng-template>
+					</kendo-multiselect> -->
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+
+	<!-- list of added indredients-->
+	<ingredient-list [ingredients]="ingredients"></ingredient-list>
+
+	<div text-right>
+		<button tooltip="Clear List" ion-button (click)="clearAll()">Clear</button>
+		<button tooltip="Submit Action" ion-button (click)="onSubmit()">Submit</button>
+	</div>
+
+</ion-content>

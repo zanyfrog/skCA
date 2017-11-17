@@ -1,0 +1,25 @@
+<ion-header>
+	<ion-navbar>
+	</ion-navbar>
+</ion-header>
+
+<page-header [page-title]="page.title"></page-header>
+
+<ion-content padding inline>
+
+	<page-subheader [title]="page.title"></page-subheader>
+	<div *ngIf="isAuthorized">
+		<div class="col-12 col-lg-5 d-inline-block">
+			<action-list></action-list>
+		</div>
+		<div class="col-12 col-lg-5 d-inline-block">
+			<action-list></action-list>
+		</div>
+		<div class="col-12 col-lg-5 d-inline-block">
+			<action-list></action-list>
+		</div>
+		<div class="col-12 col-lg-5 d-inline-block">
+			<action-list></action-list>
+		</div>
+	</div>
+</ion-content>

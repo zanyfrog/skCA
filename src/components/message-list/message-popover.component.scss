@@ -1,0 +1,40 @@
+message-popover {
+    .top{
+        background: $msg-list-top; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(right,rgba(255,0,0,0), $msg-list-top); /*Safari 5.1-6*/
+        background: -o-linear-gradient(left,rgba(255,0,0,0), $msg-list-top); /*Opera 11.1-12*/
+        background: -moz-linear-gradient(left,rgba(255,0,0,0), $msg-list-top); /*Fx 3.6-15*/
+        background: linear-gradient(to left, rgba(255,0,0,0),  $msg-list-top); /*Standard*/
+    }
+
+    .reply-same{
+        background: $msg-list-reply-same; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(right,rgba(255,0,0,0),$msg-list-reply-same); /*Safari 5.1-6*/
+        background: -o-linear-gradient(left,rgba(255,0,0,0),$msg-list-reply-same); /*Opera 11.1-12*/
+        background: -moz-linear-gradient(left,rgba(255,0,0,0),$msg-list-reply-same); /*Fx 3.6-15*/
+        background: linear-gradient(to left, rgba(255,0,0,0), $msg-list-reply-same); /*Standard*/
+        text-align: left;
+    }
+
+    .reply-other{
+        background: $msg-list-reply-other; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(left,rgba(255,0,0,0),$msg-list-reply-other); /*Safari 5.1-6*/
+        background: -o-linear-gradient(right,rgba(255,0,0,0),$msg-list-reply-other); /*Opera 11.1-12*/
+        background: -moz-linear-gradient(right,rgba(255,0,0,0),$msg-list-reply-other); /*Fx 3.6-15*/
+        background: linear-gradient(to right, rgba(255,0,0,0), $msg-list-reply-other); /*Standard*/
+        text-align: right;
+    }
+
+    .item-md {
+        padding-left: 5px;
+    }
+
+    .label-md{
+        margin: 0;
+    }
+
+    .newMsg{
+        font-weight: bolder;
+        font-size: 18px;
+    }
+}

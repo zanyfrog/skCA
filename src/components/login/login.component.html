@@ -1,0 +1,20 @@
+<form ng-submit="onSubmit()">
+  <div [formGroup]="loginForm">
+    <ion-item *ngIf="errorMsg != ''" text-center>
+      <div class="danger">*{{errorMsg}}</div>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Username:</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+      <div *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].dirty" class="text-danger">*Email Required</div>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Password:</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+      <div *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].dirty" class="text-danger">*Password Required</div>
+    </ion-item>
+    <div text-right>
+      <button ion-button (click)="onSubmit()" color="Primary" [disabled]="!loginForm.valid">Login</button>
+    </div>
+  </div>
+</form>

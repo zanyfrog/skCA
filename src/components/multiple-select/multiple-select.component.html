@@ -1,0 +1,30 @@
+<div class="form-control">
+	<div>
+		List of Selected ({{sk_ngModel}}):
+		<!-- <span class="btn btn-primary btn-sm selected" *ngFor="let item of selectedItems">
+        {{item}}<span class="close-selected" (click)="close(item)">&nbsp;x</span>
+		</span> -->
+	</div>
+	<div style="background-color: yellow;">
+		<ion-input 
+			[(ngModel)]='sk_ngModel' 
+			
+			[typeahead]="sk_typeahead"
+			(typeaheadNoResults)="sk_typeaheadNoResults" 
+			(typeaheadLoading)="changeTypeaheadLoading($event)"
+			(typeaheadNoResults)="sk_typeaheadNoResults" 
+			(typeaheadOnSelect)="changetypeaheadOnSelect($event)" 
+			[typeaheadAsync]="sk_typeaheadAsync"
+			[typeaheadMinLength]="sk_typeaheadMinLength" 
+
+			[typeaheadWaitMs] = "sk_typeaheadWaitMs"
+			[typeaheadOptionsLimit] = "sk_typeaheadOptionsLimit"
+			[typeaheadOptionField] = "sk_typeaheadOptionField"
+			[typeaheadGroupField] = "sk_typeaheadGroupField"
+			[typeaheadSingleWords] = "sk_typeaheadSingleWords"
+			[typeaheadItemTemplate] = "sk_typeaheadItemTemplate"
+
+			(ionChange)="valueChanged($event)"
+		></ion-input>
+	</div>
+</div>

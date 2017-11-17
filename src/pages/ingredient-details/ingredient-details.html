@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar></ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	
+	<page-subheader [title]="page.title"></page-subheader>
+
+
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <div ion-item>
+          Inventory #: {{ingredient.invId}}
+        </div>
+        <div ion-item>
+          Name: {{ingredient.name}}
+        </div>
+        <div ion-item>
+          Manufacturer: {{ingredient.manufacturer}}
+        </div>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <h2>Messages</h2>
+  message list goes here...
+  <div text-right>
+    <button tooltip="Go Back" ion-button (click)="goBack()" showWhen="core">Back</button>
+  </div>
+</ion-content>

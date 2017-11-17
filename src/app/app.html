@@ -1,0 +1,14 @@
+<ion-split-pane>
+  <ion-menu [content]="content">
+    <ion-header>
+      <ion-navbar>
+        <ion-title>
+          <img alt="logo" src="../assets/images/logo.png" />
+        </ion-title>
+      </ion-navbar>
+    </ion-header>
+    <app-menu></app-menu>
+  </ion-menu>
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+  <ion-nav [root]="rootPage" main #content swipeBackEnabled="false"></ion-nav>
+</ion-split-pane>

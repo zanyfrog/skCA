@@ -1,0 +1,9 @@
+<ion-buttons class="menu-buttons">
+	<!-- isLoggedIn ({{isLoggedIn}}) [{{auth.isLoggedIn}}] -->
+	<button ion-button icon-left full clear *ngFor="let button of menuFiltered" 
+		(click)="gotoPage(button.pageName)"
+		>
+		<ion-icon item-left name="{{button.iconName}}"></ion-icon>
+		{{button.text}}
+	 </button>
+ </ion-buttons>

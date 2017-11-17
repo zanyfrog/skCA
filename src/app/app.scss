@@ -1,0 +1,50 @@
+// @import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+bootstrap\scss
+
+.danger{
+    //font-weight: bold;
+    color: red;
+}
+
+.menu-buttons {
+    margin-top: 60px;
+}
+
+.menu-buttons .button-inner{
+    justify-content: left;
+}
+
+.label-md{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.messagePopover{
+    .popover-content{
+        width: 325px
+    }
+
+}
+
+ion-list > ion-row > ion-col.header
+{
+	background-color: map-get(map-get($control-color, list), header);
+}
+
+ion-list > ion-row > ion-col.sort
+{
+	border-style: outset;
+	border-width: 1px;
+}
+
+additionalInfo{
+	size: 0.75em;
+}
+
+.toolbar-title > img {
+        width: 40px;
+        height: 40px;
+      }
+
+

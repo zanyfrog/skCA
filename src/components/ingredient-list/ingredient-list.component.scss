@@ -1,0 +1,8 @@
+#item-list .item-md{
+padding-left: 0;
+height: 50px;
+}
+
+#item-list .item-md:nth-child(odd) {
+    background: lightcyan;
+}
